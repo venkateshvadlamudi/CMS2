@@ -24,7 +24,7 @@ from utilities.customLogger import LogGen
 
 
 class Test_003_PenciledInLeadFlow:
-    baseURL="https://wip.d1an3ax2xglzwd.amplifyapp.com"
+    baseURL="foo"
     username="venki"
     password="Venki@123"
     searchCID="6988880"
@@ -32,33 +32,30 @@ class Test_003_PenciledInLeadFlow:
     def test_PenciledInLeadFlow(self,setup):
          #self.driver=webdriver.chrome()
         self.driver = setup
+        self.driver.implicitly_wait(10)
         self.driver.get(self.baseURL)
         self.driver.maximize_window()
-        time.sleep(7)
         self.lp=Login(self.driver)
         assert "https://wip.d1an3ax2xglzwd.amplifyapp.com/login" in self.driver.current_url
         print(self.driver.current_url)
-        time.sleep(7)
         self.lp.setUserName(self.username)
-        time.sleep(3)
+
         self.lp.setPassword(self.password)
-        time.sleep(3)
+
         self.lp.clickLogin()
-        time.sleep(5)
-        assert "https://wip.d1an3ax2xglzwd.amplifyapp.com/dashboard" in self.driver.current_url
+
         print(self.driver.current_url)
-        time.sleep(5)
 
         self.lf = LeadFlow(self.driver)
 
         self.lf.clickSearchButton()
-        time.sleep(5)
+
         self.lf.setSearchCID(self.searchCID)
-        time.sleep(5)
+
         self.lf.clickSearchIcon()
-        time.sleep(5)
+
         self.lf.clickSearchResult()
-        time.sleep(15)
+
 
         assert "https://wip.d1an3ax2xglzwd.amplifyapp.com/penciled-in/PenciledInLead" in self.driver.current_url
         print(self.driver.current_url)

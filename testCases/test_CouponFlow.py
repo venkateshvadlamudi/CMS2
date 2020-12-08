@@ -23,25 +23,21 @@ from utilities.customLogger import LogGen
 
 
 
-class Test_001_LeadFlow:
-    baseURL="https://wip.d1an3ax2xglzwd.amplifyapp.com"
+class Test_005_CouponLeadFlow:
+    baseURL="https://wip.moverfull.com/"
     username="venki"
     password="Venki@123"
-    searchCID="6988819"
+    searchCID="6988906"
 
-    def getUrl(self):
-        return self.driver.current_url
+    def test_CouponFlow(self,setup):
 
-
-    def test_LeadFlow(self,setup):
-         #self.driver=webdriver.chrome()
         self.driver = setup
-        self.driver.implicitly_wait(12)
+        self.driver.implicitly_wait(10)
         self.driver.get(self.baseURL)
         self.driver.maximize_window()
 
         self.lp=Login(self.driver)
-        #self.assertIn('/login', self.getUrl())
+
         print(self.driver.current_url)
 
         self.lp.setUserName(self.username)
@@ -49,6 +45,9 @@ class Test_001_LeadFlow:
         self.lp.setPassword(self.password)
 
         self.lp.clickLogin()
+
+        #assert "https://wip.d1an3ax2xglzwd.amplifyapp.com/dashboard" in self.driver.current_url
+        #self.assertIn('/dashboard', self.getUrl())
         print(self.driver.current_url)
 
 
@@ -68,7 +67,7 @@ class Test_001_LeadFlow:
 
         text_element1 = self.driver.find_element_by_id("cid").text
         print(text_element1)
-        assert "6988819Branch : Dallas" in text_element1
+        assert "6988906Branch : Dallas" in text_element1
 
         text_element2 = self.driver.find_element_by_id("scriptcardtext").text
         print("Call page Script card : ", text_element2)
@@ -96,6 +95,7 @@ class Test_001_LeadFlow:
         #assert '"Welcome back! Looking forward to providing you a great experience again.\n\nI also want you to have peace of mind th...r employees are healthy and our customers are safe.\n\nLet me quickly gather your information and get\nyou scheduled."' in text_element5
 
         self.lf.clickYesContinueButton()
+
 
         text_element6 = self.driver.find_element_by_id("scriptcardtext").text
         print("move-type Script card : ", text_element6)
@@ -137,13 +137,14 @@ class Test_001_LeadFlow:
         assert "And what day are you looking\nfor us to move you?" in text_element11
 
         self.lf.clickonExactdate()
-        time.sleep(15)
+        time.sleep(12)
 
         text_element12 = self.driver.find_element_by_id("scriptcardtext").text
         print("special-reqs Script card : ", text_element12)
         assert "Do you have any items with\nspecial requirements?" in text_element12
 
         self.lf.clickonSpecialReqsContinueButton()
+
 
         text_element13 = self.driver.find_element_by_id("scriptcardtext").text
         print("heaviest-item Script card : ", text_element13)
@@ -177,6 +178,10 @@ class Test_001_LeadFlow:
         print("pricing Script card : ", text_element17)
         assert "Now for pricing venki, we like to keep it very simple. I’ll just have you hire us by the hour. The time starts when we arrive at your home, and stops once we’re finished." in text_element17
 
+        text_coupontext = self.driver.find_element_by_xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/li[4]/div[1]/div[1]/div[2]").text
+        print("Coupon Text  : ", text_coupontext)
+        assert "The $50 Off Coupon was applied to your move" in text_coupontext
+
         self.lf.clickonpricingContinueButton()
 
 
@@ -185,16 +190,6 @@ class Test_001_LeadFlow:
         assert '"Again, my name is V venkatesh and I’m going to be here every step of the way to make sure this is the best move you’ve ever had.\n\nNow can I go ahead and get the address you\'re moving to and your email?"' in text_element18
 
         self.lf.clickonquotebookingSetforestimatorButton()
-
-        text_element19 = self.driver.find_element_by_id("scriptcardtext").text
-        print("set-estimator Script card : ", text_element19)
-        assert '"Le Vanuel is one of our best estimator and available to survey your home.\n14 Years with All My Sons. Any additional information about estimator goes here"'in text_element19
-
-
-
-
-
-
 
 
 

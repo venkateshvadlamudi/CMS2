@@ -1,10 +1,21 @@
+from telnetlib import EC
+
 from selenium import webdriver
 import pytest
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
+
 
 @pytest.fixture()
 def setup():
-    driver =webdriver.Chrome(executable_path=".//TestData/chromedriver.exe")
+    #driver =webdriver.Chrome(executable_path=".//TestData/chromedriver.exe")
+    #return driver
+    timeout = 15
+    driver = webdriver.Chrome(ChromeDriverManager().install())
     return driver
+
+
 
 """
  @pytest.fixture()

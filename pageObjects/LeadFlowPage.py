@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common import by
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 
 
@@ -80,6 +81,21 @@ class LeadFlow:
     button_pricing_Continue_id = "btnCONTINUE"
 
     button_quote_booking_setforestimator_id = "setforestimator"
+
+    button_flexablecoupon_xpath = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/li[4]/div[1]/div[1]/div[2]/span[1]"
+    button_selectflexabledate_xpath ="//div[contains(text(),'29')]"
+    button_updatemovedadte_id ="btnUPDATEMOVEDATE"
+
+    button_laborOnly_id = "btnLABORONLY"
+    button_loading_id = "Loading"
+    button_Unloading_id = "Unloading"
+    button_Onsite_id = "Onsite"
+    button_YesEntireHome_id = "YesEntireHome"
+    button_NoPartialLoad_id = "NoPartialLoad"
+    button_NoaFewItems_id = "NoaFewItems"
+
+
+
 
     # button_quote_booking_setforestimator_id = "setforestimator"
     # button_quote_booking_setforestimator_id = "setforestimator"
@@ -170,9 +186,9 @@ class LeadFlow:
         self.driver.find_element_by_id(self.testfield_fromAddres_id).clear()
         self.driver.find_element_by_id(self.testfield_fromAddres_id).send_keys(fromAddress)
 
-    def setToAddress(self, toAddress):
+    def setToAddress(self):
         self.driver.find_element_by_id(self.textfield_toAddress_id).clear()
-        self.driver.find_element_by_id(self.textfield_toAddress_id).send_keys(toAddress)
+        self.driver.find_element_by_id(self.textfield_toAddress_id).send_keys(Keys.BACKSPACE)
 
     def clickonAddStop(self):
         self.driver.find_element_by_id(self.button_addstop_Address_id).click()
@@ -288,6 +304,40 @@ class LeadFlow:
 
     def clickonquotebookingSetforestimatorButton(self):
         self.driver.find_element_by_id(self.button_quote_booking_setforestimator_id).click()
+
+    def clickonflexableCoupon(self):
+        self.driver.find_element_by_xpath(self.button_flexablecoupon_xpath ).click()
+
+    def clickonselectflexabledate(self):
+        self.driver.find_element_by_xpath(self.button_selectflexabledate_xpath).click()
+
+    def clickonupdatemovedate(self):
+        self.driver.find_element_by_id(self.button_updatemovedadte_id).click()
+
+    def clickonlabouronly(self):
+        self.driver.find_element_by_id(self.button_laborOnly_id).click()
+
+    def clickonLoading(self):
+        self.driver.find_element_by_id(self.button_loading_id).click()
+
+    def clickonUnloading(self):
+        self.driver.find_element_by_id(self.button_Unloading_id).click()
+
+    def clickonOnsite(self):
+        self.driver.find_element_by_id(self.button_Onsite_id).click()
+
+    def clickonYesEntireHomeLoad(self):
+            self.driver.find_element_by_id(self.button_YesEntireHome_id).click()
+
+    def clickNoPartialLoad(self):
+                self.driver.find_element_by_id(self.button_NoPartialLoad_id).click()
+
+    def clickNoaFewItems(self):
+                    self.driver.find_element_by_id(self.button_NoaFewItems_id).click()
+
+
+
+
 
 
 
